@@ -4,6 +4,10 @@
 
 项目使用 Windows PowerShell 提供本地 HTTP 服务，浏览器通过 `http://127.0.0.1:26128/` 访问，不需要安装 Node.js、Python 或数据库。
 
+## 界面预览
+
+![TTYQ History Query 界面预览](docs/screenshot.png)
+
 ## 功能
 
 - 下拉选择历史期号，并自动识别官网已发布的最新期号
