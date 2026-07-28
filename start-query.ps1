@@ -1,0 +1,1 @@
+& "$PSScriptRoot\server.ps1"
