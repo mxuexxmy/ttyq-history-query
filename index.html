@@ -4,47 +4,155 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>天天盈球 · 六场半全历史查询</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23c9322e'/%3E%3Ccircle cx='32' cy='32' r='20' fill='white'/%3E%3Cpath d='M32 21l7 5-3 9h-8l-3-9zM25 26l-8-3m22 3l8-3M28 35l-5 9m13-9l5 9' fill='%2324272b' stroke='%2324272b' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M8 22A26 26 0 0 1 49 12' fill='none' stroke='%23f0b736' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8 22L7 12m1 10l9-3' fill='none' stroke='%23f0b736' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="alternate icon" href="/favicon.ico" type="image/x-icon">
   <style>
-    :root{--ink:#17191c;--muted:#747982;--paper:#efede7;--card:#fffdf8;--line:#d9d4c8;--red:#c9322e;--green:#1c7453;--gold:#d0a64e;--shadow:0 18px 50px rgba(47,39,27,.12)}
-    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:linear-gradient(rgba(23,25,28,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(23,25,28,.035) 1px,transparent 1px),var(--paper);background-size:28px 28px;font-family:"Noto Serif SC","Songti SC","STSong",serif}
-    a{color:inherit;text-decoration:none}.shell{width:min(1480px,calc(100% - 36px));margin:0 auto;padding:26px 0 50px}
-    .hero{position:relative;overflow:hidden;padding:28px 38px 30px;color:#25282c;background:#fff;border:1px solid var(--line);border-radius:6px 6px 0 0;box-shadow:var(--shadow)}
-    .hero:after{content:attr(data-issue);position:absolute;right:22px;top:-32px;color:rgba(201,50,46,.045);font:900 170px/1 Georgia,serif;letter-spacing:-12px}
-    .eyebrow{color:var(--red);font-size:12px;letter-spacing:.22em}.hero h1{position:relative;z-index:1;margin:12px 0 7px;font-size:clamp(30px,4vw,54px);line-height:1;letter-spacing:-.04em}.hero p{position:relative;z-index:1;margin:0;color:var(--muted)}
-    .search{position:relative;z-index:2;display:flex;gap:10px;max-width:570px;margin-top:26px;padding:7px;background:#fff;border-radius:3px}
-    .search input,.search select{min-width:0;flex:1;border:0;outline:0;padding:10px 12px;color:var(--ink);background:#fff;font:700 18px/1.2 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}.search button,.toolbar button{border:0;padding:10px 18px;cursor:pointer;color:#fff;background:var(--red);font:inherit}.search button:hover{background:#a92421}.search .mode-button{flex:0 0 auto;padding:10px 12px;color:#555;background:#f2f2f2;border:1px solid #ddd}.search .mode-button:hover{color:var(--red);background:#f8f8f8}.hidden{display:none!important}
-    .hint{margin-top:10px!important;font-size:12px}.summary{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-top:0;background:#fff;box-shadow:var(--shadow)}
-    .metric{padding:16px 24px;border-right:1px solid #ece8df;background:#fff;color:var(--ink)}.metric:last-child{border-right:0}.metric b{display:block;margin-bottom:5px;color:var(--red);font:700 23px/1.2 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}.metric span{color:var(--muted);font-size:12px;letter-spacing:.06em}
-    .notice{display:none;padding:18px 22px;border:1px solid #e3c9a2;border-top:0;background:#fff8e8;color:#79561e}.notice.show{display:block}.notice.error{border-color:#e2aaa8;background:#fff0ef;color:#9e2925}
-    .draw-strip{display:none;align-items:center;gap:24px;padding:15px 22px;border:2px solid #dd433e;background:#fff;box-shadow:0 5px 16px rgba(201,50,46,.08)}.draw-strip.show{display:flex}.draw-summary{flex:1;color:#555;word-spacing:5px}.draw-summary b{color:var(--red);font:700 17px/1.2 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}.draw-strip button{border:0;color:#16859b;background:transparent;cursor:pointer;font:700 16px/1.2 inherit}.draw-detail{display:none;align-items:center;gap:14px;padding:14px 22px;border:1px solid var(--line);border-top:0;background:#fff}.draw-detail.show{display:flex}.draw-numbers{display:flex;flex-wrap:wrap;gap:5px}.draw-number{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:50%;color:#fff;background:var(--red);font:700 14px/1 "Segoe UI",Arial,sans-serif}.draw-date{margin-left:auto;color:var(--muted);font:13px/1.2 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}
-    .toolbar{display:flex;align-items:center;gap:8px;padding:17px 20px;border:1px solid var(--line);border-top:0;background:var(--card)}.toolbar strong{margin-right:auto}.toolbar button{padding:7px 11px;color:var(--ink);background:#fff;border:1px solid var(--line)}.toolbar button:hover,.toolbar button.active{color:#fff;background:var(--green);border-color:var(--green)}
-    .odds-switcher{position:relative;z-index:5}.toolbar .odds-switch-button{min-width:118px;text-align:left}.odds-arrow{float:right;margin-left:12px}.odds-menu{display:none;position:absolute;right:0;top:38px;width:360px;padding:12px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 32px rgba(47,39,27,.2)}.odds-menu.show{display:block}.odds-tabs{display:flex;gap:7px;margin-bottom:10px}.toolbar .odds-tab{flex:1;border:0;border-radius:18px;background:#f1f1f1}.toolbar .odds-tab.active{color:#1673bd;background:#e8f5ff}.odds-provider-list{border-top:1px solid #eee}.toolbar .odds-provider{display:block;width:100%;padding:11px 12px;border:0;border-bottom:1px solid #eee;text-align:left;background:#fff}.toolbar .odds-provider:hover,.toolbar .odds-provider.active{color:#1673bd;background:#eef8ff}
-    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-top:0;background:var(--card);box-shadow:var(--shadow)}table{width:100%;min-width:1130px;border-collapse:collapse}
-    th{position:sticky;top:0;z-index:2;padding:13px 9px;color:#34383d;background:#f1f2f3;border-right:1px solid #e4e5e6;font-size:12px;letter-spacing:.07em;white-space:nowrap}td{padding:15px 10px;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}tbody tr:hover{background:#fff5df}
-    .no{display:inline-grid;place-items:center;width:31px;height:31px;color:#fff;background:var(--red);font:700 15px/1 "Segoe UI",Arial,sans-serif}.league{color:var(--red);font-weight:700}.league:hover,.team a:hover,.analysis a:hover{color:var(--red);text-decoration:underline}
-    .time{color:var(--muted);font-family:"Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums;line-height:1.5}.status{display:inline-block;padding:4px 8px;color:var(--green);border:1px solid #9bcab8;background:#edf8f3}.team{min-width:130px;font-weight:700}.team small{display:block;margin-top:5px;color:var(--muted);font-family:"Segoe UI",Arial,sans-serif;font-weight:400;font-variant-numeric:tabular-nums}
-    .score{min-width:108px;color:var(--red);font:700 27px/1 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}.score small{display:block;margin-top:7px;color:var(--muted);font:12px/1.2 "Segoe UI",Arial,sans-serif}.stats{color:#565b62;font:12px/1.7 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}.odds{font:13px/1.65 "Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums;white-space:nowrap}.odds span{display:inline-block;min-width:36px;padding:2px 4px;background:#f0eee8}.odds span.odds-hit{color:#fff;font-weight:700}.odds span.odds-rank-first{background:#1673bd}.odds span.odds-rank-second{background:#d9aa00}.odds span.odds-rank-last{background:#f04a16}.analysis{min-width:130px}.analysis a{display:inline-block;margin:2px;padding:5px 7px;border:1px solid var(--line);background:#fff}
-    .empty{padding:70px 20px!important;color:var(--muted);font-size:16px}.source{display:flex;justify-content:space-between;gap:20px;padding:17px 4px 0;color:var(--muted);font-size:12px}.source a{color:var(--green);text-decoration:underline}.cards-off .cards{display:none}.odds-off .odds{color:transparent}.odds-off .odds:after{content:"已隐藏";color:var(--muted)}
-    .average-odds{display:none;align-items:center;gap:12px;padding:14px 18px;border-top:1px solid var(--line);background:#fff;color:#555}.average-odds.show{display:flex}.odds-label{margin-right:8px}.odds-badge{display:inline-block;min-width:48px;padding:4px 10px;border-radius:4px;color:#fff;text-align:center;font-weight:700}.odds-first{background:#1673bd}.odds-second{background:#d9aa00}.odds-last{background:#f04a16}.odds-total{margin-right:6px;color:#444;font-family:"Segoe UI",Arial,sans-serif;font-variant-numeric:tabular-nums}
-    @media(max-width:760px){.shell{width:calc(100% - 18px);padding-top:9px}.hero{padding:25px 20px}.search{flex-wrap:wrap}.search button{width:100%}.summary{grid-template-columns:1fr 1fr}.metric{padding:14px}.draw-strip,.draw-detail{align-items:flex-start;flex-direction:column;gap:10px}.draw-date{margin-left:0}.toolbar{flex-wrap:wrap}.toolbar strong{width:100%}.odds-menu{position:fixed;left:9px;right:9px;top:120px;width:auto}.source{display:block;line-height:1.8}}
-    @media print{body{background:#fff}.shell{width:100%;padding:0}.search,.toolbar,.source{display:none}.hero,.summary,.table-wrap{box-shadow:none}th{position:static}}
+    :root{--red:#c9322e;--dark:#2b2b2b;--green:#1c7453;--blue:#1682bd;--line:#e3e3e3;--muted:#8a8f96;--paper:#fff}
+    *{box-sizing:border-box}
+    body{margin:0;color:#333;background:#f4f4f4;font-family:"Microsoft YaHei","Segoe UI",Arial,sans-serif;font-size:14px}
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.45}
+    .shell{width:min(1240px,calc(100% - 24px));margin:22px auto 40px;background:var(--paper);box-shadow:0 2px 12px rgba(0,0,0,.08)}
+    .hero{border-top:3px solid var(--red);background:#fff}
+    .page-tabs{display:flex;border-bottom:1px solid #eee;background:#fff9f9}
+    .page-tabs span{min-width:135px;padding:17px 24px;border-right:1px solid #f0dddd;text-align:center;color:#c56563;font-size:16px}
+    .page-tabs .active{color:#222;background:#fff;font-weight:700}
+    .headline{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 26px 14px}
+    .headline h1{margin:0;font-size:23px}
+    .headline p{margin:6px 0 0;color:var(--muted);font-size:12px}
+    .search{display:flex;align-items:center;gap:9px;padding:14px 18px;background:var(--dark)}
+    .search label{color:#aaa;white-space:nowrap}
+    .search input,.search select{width:190px;height:36px;padding:0 11px;color:#fff;background:#393939;border:1px solid #666;outline:0;font-weight:700;font-variant-numeric:tabular-nums}
+    .search select option{color:#222;background:#fff}
+    .search button{height:36px;padding:0 15px;color:#fff;background:#444;border:1px solid #666;border-radius:3px}
+    .search button:hover:not(:disabled){background:#555}
+    .search .search-button{background:#f05a5f;border-color:#f05a5f}
+    .search .search-button:hover:not(:disabled){background:#d9484d}
+    .search .mode-button{color:#ddd}
+    .search .nav-button{min-width:86px;background:#3c3c3c}
+    .search .next-button{margin-left:auto}
+    .hidden{display:none!important}
+    .summary{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}
+    .metric{padding:15px 20px;border-right:1px solid var(--line)}
+    .metric:last-child{border-right:0}
+    .metric b{display:block;color:var(--red);font-size:20px;font-variant-numeric:tabular-nums}
+    .metric span{display:block;margin-top:4px;color:var(--muted);font-size:12px}
+    .notice{display:none;padding:13px 20px;border-bottom:1px solid #ead9aa;background:#fff9e9;color:#85601c}
+    .notice.show{display:block}
+    .notice.error{border-color:#e9b8b5;background:#fff1f0;color:#a92e2a}
+    .draw-strip{display:flex;align-items:center;gap:20px;padding:15px 20px;border:2px solid #df413c;border-bottom-width:1px;background:#fff}
+    .draw-summary{flex:1;color:#555;word-spacing:4px}
+    .draw-summary b{color:var(--red);font-size:17px;font-variant-numeric:tabular-nums}
+    .draw-date{color:var(--muted);font-size:13px;white-space:nowrap}
+    .draw-detail{display:flex;align-items:center;gap:15px;padding:13px 20px;border:2px solid #df413c;border-top:0;background:#fff}
+    .draw-detail strong{white-space:nowrap}
+    .draw-numbers{display:flex;flex-wrap:wrap;gap:7px}
+    .draw-number{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;color:#fff;background:var(--red);font-weight:700;font-variant-numeric:tabular-nums}
+    .toolbar{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fff}
+    .toolbar strong{margin-right:auto;font-size:16px}
+    .toolbar button{padding:7px 12px;color:#333;background:#fff;border:1px solid #ddd;border-radius:2px}
+    .toolbar button:hover,.toolbar button.active{color:#fff;background:var(--green);border-color:var(--green)}
+    .odds-switcher{position:relative;z-index:5}
+    .toolbar .odds-switch-button{min-width:126px;text-align:left}
+    .odds-arrow{float:right;margin-left:12px}
+    .odds-menu{display:none;position:absolute;right:0;top:38px;width:360px;padding:12px;background:#fff;border:1px solid #ddd;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+    .odds-menu.show{display:block}
+    .odds-tabs{display:flex;gap:7px;margin-bottom:10px}
+    .toolbar .odds-tab{flex:1;border:0;border-radius:18px;background:#f1f1f1}
+    .toolbar .odds-tab.active{color:#1673bd;background:#e8f5ff}
+    .odds-provider-list{border-top:1px solid #eee}
+    .toolbar .odds-provider{display:block;width:100%;padding:11px 12px;border:0;border-bottom:1px solid #eee;text-align:left;background:#fff}
+    .toolbar .odds-provider:hover,.toolbar .odds-provider.active{color:#1673bd;background:#eef8ff}
+    .table-wrap{overflow-x:auto;background:#fff}
+    table{width:100%;min-width:1220px;border-collapse:collapse;table-layout:fixed}
+    th{padding:12px 7px;color:#4a4e53;background:#f0f2f4;border-right:1px solid #e4e6e8;border-bottom:1px solid #ddd;font-size:12px;white-space:nowrap}
+    td{height:72px;padding:10px 7px;border-right:1px solid #eee;border-bottom:1px solid var(--line);text-align:center;vertical-align:middle}
+    tbody tr:hover{background:#fff9ea}
+    tbody tr.pinned{background:#fff4d8}
+    .no{display:inline-grid;place-items:center;width:31px;height:31px;color:#fff;background:var(--red);font-weight:700}
+    .league-cell{padding:0}
+    .league-cell a{display:flex;align-items:center;justify-content:center;min-height:72px;padding:8px;color:#fff;font-weight:700;text-shadow:0 1px 1px rgba(0,0,0,.18)}
+    .league-cell a:hover,.team a:hover,.analysis a:hover{text-decoration:underline}
+    .time{color:#777;line-height:1.55;font-variant-numeric:tabular-nums}
+    .status-wrap{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap}
+    .status{display:inline-block;padding:4px 7px;color:var(--green);border:1px solid #9bcab8;background:#edf8f3;white-space:nowrap}
+    .neutral{display:inline-block;padding:3px 6px;color:#e67c82;border:1px solid #f0c6c9;background:#fff4f5;font-size:12px;white-space:nowrap}
+    .team{font-weight:700}
+    .team small{display:block;margin-top:5px;color:#888;font-weight:400;font-variant-numeric:tabular-nums}
+    .score{color:var(--red);font-size:25px;font-weight:700;font-variant-numeric:tabular-nums}
+    .score small{display:block;margin-top:7px;color:#888;font-size:12px;font-weight:400}
+    .stats{color:#666;font-size:12px;line-height:1.7;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .experts a{color:#d06b6b}
+    .result{color:#d44949;font-weight:700;font-variant-numeric:tabular-nums}
+    .result span{display:block;line-height:1.7}
+    .odds{font-size:12px;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .odds span{display:inline-block;min-width:36px;padding:3px 4px;background:#f0f0ed}
+    .odds span.odds-hit{color:#fff;font-weight:700}
+    .odds span.odds-rank-first{background:#1673bd}
+    .odds span.odds-rank-second{background:#d9aa00}
+    .odds span.odds-rank-last{background:#f04a16}
+    .analysis{white-space:nowrap}
+    .analysis a{display:inline-block;margin:1px;padding:4px 5px;color:#1682bd}
+    .analysis a:last-child{color:#d36c73}
+    .pin-button{width:28px;height:28px;padding:0!important;color:#1682bd!important;background:#fff!important;border:1px solid #d8e9ef!important}
+    .pin-button.active{color:#fff!important;background:#1682bd!important}
+    .empty{height:auto;padding:65px 20px!important;color:#999;font-size:15px}
+    .average-odds{display:none;align-items:center;gap:10px;padding:13px 18px;border-top:1px solid var(--line);background:#fff;color:#555}
+    .average-odds.show{display:flex}
+    .odds-label{margin-right:8px}
+    .odds-badge{display:inline-block;min-width:48px;padding:4px 10px;border-radius:4px;color:#fff;text-align:center;font-weight:700}
+    .odds-first{background:#1673bd}.odds-second{background:#d9aa00}.odds-last{background:#f04a16}
+    .odds-total{margin-right:6px;font-variant-numeric:tabular-nums}
+    .source{display:flex;justify-content:space-between;gap:20px;padding:16px 18px;color:#999;font-size:12px;background:#fafafa}
+    .source a{color:var(--green);text-decoration:underline}
+    .cards-off .cards{display:none}
+    .odds-off .odds{color:transparent}
+    .odds-off .odds:after{content:"已隐藏";color:#999}
+    @media(max-width:760px){
+      .shell{width:100%;margin:0}
+      .page-tabs span{min-width:0;flex:1;padding:13px 5px;font-size:14px}
+      .headline{padding:16px}
+      .headline p{display:none}
+      .search{flex-wrap:wrap}
+      .search label{width:100%}
+      .search input,.search select{width:calc(100% - 198px);flex:1}
+      .search .nav-button{min-width:88px}
+      .search .next-button{margin-left:0}
+      .search .search-button{flex:1}
+      .summary{grid-template-columns:1fr 1fr}
+      .metric:nth-child(2){border-right:0}
+      .draw-strip,.draw-detail{align-items:flex-start;flex-direction:column;gap:10px}
+      .toolbar{flex-wrap:wrap}
+      .toolbar strong{width:100%}
+      .odds-menu{position:fixed;left:9px;right:9px;top:110px;width:auto}
+      .source{display:block;line-height:1.8}
+    }
+    @media print{
+      body{background:#fff}.shell{width:100%;margin:0;box-shadow:none}
+      .page-tabs,.search,.summary,.notice,.toolbar,.source,.pin-column{display:none}
+      table{min-width:0}.table-wrap{overflow:visible}
+    }
   </style>
 </head>
 <body>
   <main class="shell">
-    <header class="hero" id="hero" data-issue="HISTORY">
-      <div class="eyebrow">TIAN TIAN YING QIU · ARCHIVE FINDER</div>
-      <h1 id="title">六场半全历史查询</h1>
-      <p id="subtitle">输入期号，读取天天盈球公开历史数据</p>
+    <header class="hero">
+      <nav class="page-tabs" aria-label="足彩分类">
+        <span>胜负彩</span><span>4场进球</span><span class="active">6场半全</span>
+      </nav>
+      <div class="headline">
+        <div><h1 id="title">六场半全历史查询</h1><p id="subtitle">读取天天盈球公开历史数据</p></div>
+      </div>
       <form class="search" id="searchForm">
+        <button class="nav-button" id="previousButton" type="button">◀ 上一期</button>
+        <label for="issueSelect">历史期号查询：</label>
         <select id="issueSelect" aria-label="选择历史期号"><option value="">正在载入期号…</option></select>
-        <input class="hidden" id="issueInput" inputmode="numeric" autocomplete="off" placeholder="例如：26128 或 2026128" aria-label="手动输入历史期号">
+        <input class="hidden" id="issueInput" inputmode="numeric" autocomplete="off" placeholder="26135 或 2026135" aria-label="手动输入历史期号">
         <button class="mode-button" id="modeButton" type="button">手动输入</button>
-        <button id="searchButton" type="submit">查询历史</button>
+        <button class="search-button" id="searchButton" type="submit">加载历史数据</button>
+        <button class="nav-button next-button" id="nextButton" type="button">下一期 ▶</button>
       </form>
-      <p class="hint">默认从下拉框选择期号；找不到时可切换“手动输入”，支持 26128 或 2026128。</p>
     </header>
     <section class="summary">
       <div class="metric"><b id="matchCount">—</b><span>比赛场次</span></div>
@@ -55,12 +163,11 @@
     <div class="notice" id="notice"></div>
     <section class="draw-strip" id="drawStrip">
       <div class="draw-summary">该期6场半全销量：<b id="drawSales">—</b>元　奖池滚存：<b id="drawPool">—</b>元　一等奖：<b id="firstPrizeCount">—</b>注　<b id="firstPrizeAmount">—</b>元</div>
-      <button id="drawDetailButton" type="button">开奖详情 ›</button>
+      <span class="draw-date" id="drawDate"></span>
     </section>
     <section class="draw-detail" id="drawDetail">
       <strong>开奖结果</strong>
-      <div class="draw-numbers" id="drawNumbers"></div>
-      <span class="draw-date" id="drawDate"></span>
+      <div class="draw-numbers" id="drawNumbers"><span class="draw-number">—</span></div>
     </section>
     <section class="toolbar">
       <strong>比赛明细</strong>
@@ -77,8 +184,13 @@
     </section>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>编号</th><th>赛事</th><th>开赛</th><th>状态</th><th>主队</th><th>比分 / 半场</th><th>客队</th><th>赛况</th><th id="oddsColumnTitle">平均欧指</th><th>分析</th></tr></thead>
-        <tbody id="matches"><tr><td class="empty" colspan="10">输入期号开始查询</td></tr></tbody>
+        <colgroup>
+          <col style="width:50px"><col style="width:74px"><col style="width:72px"><col style="width:82px">
+          <col style="width:128px"><col style="width:112px"><col style="width:128px"><col style="width:112px">
+          <col style="width:70px"><col style="width:54px"><col style="width:150px"><col style="width:126px"><col style="width:50px">
+        </colgroup>
+        <thead><tr><th>编号</th><th>赛事</th><th>开赛</th><th>状态</th><th>主队</th><th>比分 / 半场</th><th>客队</th><th>赛况</th><th>专家</th><th>彩果</th><th id="oddsColumnTitle">平均欧指</th><th>分析</th><th class="pin-column">置顶</th></tr></thead>
+        <tbody id="matches"><tr><td class="empty" colspan="13">选择期号开始查询</td></tr></tbody>
       </table>
       <div class="average-odds" id="averageOdds">
         <span class="odds-label" id="oddsSummaryLabel">平均欧指：</span>
@@ -87,26 +199,29 @@
         <span class="odds-badge odds-last">末赔</span><span class="odds-total" id="lastOddsCount">0</span>
       </div>
     </div>
-    <footer class="source"><span>本工具只读取天天盈球公开历史文件，不登录、不上传、不修改网站数据。</span><a id="sourceLink" href="https://www.ttyingqiu.com/6cbqc" target="_blank">打开天天盈球六场半全</a></footer>
+    <footer class="source"><span>本工具只读取天天盈球公开历史文件，不登录、不上传、不修改网站数据。</span><a id="sourceLink" href="https://www.ttyingqiu.com/6cbqc" target="_blank" rel="noopener">打开天天盈球六场半全</a></footer>
   </main>
   <script>
-    var base="https://www.ttyingqiu.com",form=document.getElementById("searchForm"),input=document.getElementById("issueInput"),select=document.getElementById("issueSelect"),modeButton=document.getElementById("modeButton"),button=document.getElementById("searchButton"),tbody=document.getElementById("matches"),notice=document.getElementById("notice"),manualMode=false,currentIssue="",currentMatches=[],currentOddsType="oz",providerByType={oz:7,asia:0,dx:0},menuOddsType="oz";
+    var base="https://www.ttyingqiu.com";
+    var form=document.getElementById("searchForm"),input=document.getElementById("issueInput"),select=document.getElementById("issueSelect"),modeButton=document.getElementById("modeButton"),button=document.getElementById("searchButton"),previousButton=document.getElementById("previousButton"),nextButton=document.getElementById("nextButton"),tbody=document.getElementById("matches"),notice=document.getElementById("notice");
+    var manualMode=false,currentIssue="",currentMatches=[],currentData={},issueList=[],pinnedMatchId="",loading=false,currentOddsType="oz",providerByType={oz:7,asia:0,dx:0},menuOddsType="oz";
     var oddsTypes=[{value:"oz",label:"欧指"},{value:"asia",label:"让球"},{value:"dx",label:"进球数"}],providerNames={0:"皇*",1:"36*",2:"澳*",3:"威廉*",4:"伟*",5:"立*",7:"平均欧指"};
     function text(id,value){document.getElementById(id).textContent=value}
     function hasValue(value){return value!==null&&typeof value!=="undefined"&&value!==""}
-    function normalize(value){var clean=value.replace(/^\s+|\s+$/g,"");if(!/^\d{5}$|^\d{7}$/.test(clean)){return null}return clean.length===5?"20"+clean:clean}
+    function escapeHtml(value){return String(value===null||typeof value==="undefined"?"":value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+    function normalize(value){var clean=String(value||"").replace(/^\s+|\s+$/g,"");if(!/^\d{5}$|^\d{7}$/.test(clean)){return null}return clean.length===5?"20"+clean:clean}
     function showNotice(message,error){notice.textContent=message;notice.className="notice show"+(error?" error":"")}
-    function links(match){var types=["oz","dxq","yp","plan"],names=["析","亚","欧","情"],html="",index;for(index=0;index<types.length;index++){html+='<a href="'+base+"/live/zq/matchDetail/"+types[index]+"/"+match.qtMatchId+'" target="_blank">'+names[index]+"</a>"}return html}
-    function resultCode(home,away){if(!hasValue(home)||!hasValue(away)){return "—"}home=Number(home);away=Number(away);return home>away?"3":home<away?"0":"1"}
+    function links(match){var types=["oz","dxq","yp","plan"],names=["析","亚","欧","情"],html="",index,id=encodeURIComponent(match.qtMatchId||"");for(index=0;index<types.length;index++){html+='<a href="'+base+"/live/zq/matchDetail/"+types[index]+"/"+id+'" target="_blank" rel="noopener">'+names[index]+"</a>"}return html}
     function isStarted(match){
       if(hasValue(match.status)&&!isNaN(Number(match.status))){return Number(match.status)!==0}
       return String(match.statusDes||"").indexOf("未开")<0;
     }
+    function resultCode(home,away,started){if(!started||!hasValue(home)||!hasValue(away)){return "—"}home=Number(home);away=Number(away);if(isNaN(home)||isNaN(away)){return "—"}return home>away?"3":home<away?"0":"1"}
     function outcomeIndex(match){var home,away;if(!isStarted(match)){return -1}home=Number(match.homeScore);away=Number(match.awayScore);if(isNaN(home)||isNaN(away)){return -1}return home>away?0:home<away?2:1}
     function scoreText(match,half){
       var home=half?match.homeHalfScore:match.homeScore,away=half?match.awayHalfScore:match.awayScore;
       if(!isStarted(match)||!hasValue(home)||!hasValue(away)){return "—"}
-      return home+" — "+away;
+      return escapeHtml(home)+" — "+escapeHtml(away);
     }
     function selectedValues(match){
       var selected=match.selectedOdds||{};
@@ -124,7 +239,7 @@
     function renderSelectedOdds(match){
       var values=selectedValues(match),selected=outcomeIndex(match),rank=resultRank(match,values),classes=["odds-rank-first","odds-rank-second","odds-rank-last"],html="",index;
       if(!values){return "<span>—</span>"}
-      for(index=0;index<values.length;index++){html+='<span'+(currentOddsType==="oz"&&index===selected&&rank>=0?' class="odds-hit '+classes[rank]+'"':"")+">"+values[index]+"</span> "}
+      for(index=0;index<values.length;index++){html+='<span'+(currentOddsType==="oz"&&index===selected&&rank>=0?' class="odds-hit '+classes[rank]+'"':"")+">"+escapeHtml(values[index])+"</span> "}
       return html;
     }
     function renderOddsSummary(matches){
@@ -134,58 +249,127 @@
       text("oddsSummaryLabel",providerNames[providerByType.oz]+"：");text("firstOddsCount",counts[0]);text("secondOddsCount",counts[1]);text("lastOddsCount",counts[2]);summary.className="average-odds show";
     }
     function renderDraw(draw,matches){
+      var numbers="",index,match,started;
       text("drawSales",draw.sales||"—");text("drawPool",draw.pool||"—");text("firstPrizeCount",draw.firstPrizeCount||"—");text("firstPrizeAmount",draw.firstPrizeAmount||"—");text("drawDate",draw.drawDate?"开奖时间："+draw.drawDate:"");
-      var numbers="",index;for(index=0;index<matches.length;index++){numbers+='<span class="draw-number">'+resultCode(matches[index].homeHalfScore,matches[index].awayHalfScore)+'</span><span class="draw-number">'+resultCode(matches[index].homeScore,matches[index].awayScore)+"</span>"}
-      document.getElementById("drawNumbers").innerHTML=numbers;document.getElementById("drawStrip").className="draw-strip show";
+      for(index=0;index<matches.length;index++){match=matches[index];started=isStarted(match);numbers+='<span class="draw-number">'+resultCode(match.homeHalfScore,match.awayHalfScore,started)+'</span><span class="draw-number">'+resultCode(match.homeScore,match.awayScore,started)+"</span>"}
+      document.getElementById("drawNumbers").innerHTML=numbers||'<span class="draw-number">—</span>';
     }
-    function updateOddsTitles(){
-      var label=providerNames[providerByType[currentOddsType]];
-      text("oddsSwitchTitle",label);text("oddsColumnTitle",label);
+    function updateOddsTitles(){var label=providerNames[providerByType[currentOddsType]];text("oddsSwitchTitle",label);text("oddsColumnTitle",label)}
+    function safeColor(value){return /^#[0-9a-f]{6}$/i.test(String(value||""))?value:"#c9322e"}
+    function expertCount(match){var map=currentData.expertsNumMap||{},value=map[String(match.qtMatchId)];return hasValue(value)?value:0}
+    function resultCell(match){var started=isStarted(match);return '<span>'+resultCode(match.homeHalfScore,match.awayHalfScore,started)+'</span><span>'+resultCode(match.homeScore,match.awayScore,started)+"</span>"}
+    function orderedMatches(){
+      var matches=currentMatches.slice(0);
+      if(!pinnedMatchId){return matches}
+      matches.sort(function(first,second){var firstPinned=String(first.qtMatchId)===pinnedMatchId,secondPinned=String(second.qtMatchId)===pinnedMatchId;if(firstPinned===secondPinned){return 0}return firstPinned?-1:1});
+      return matches;
+    }
+    function renderMatchRows(){
+      var matches=orderedMatches(),rows="",index,match,id,pinned,neutral;
+      for(index=0;index<matches.length;index++){
+        match=matches[index];id=String(match.qtMatchId||"");pinned=id===pinnedMatchId;neutral=match.middle===true||String(match.middle).toLowerCase()==="true";
+        rows+='<tr'+(pinned?' class="pinned"':"")+'>';
+        rows+='<td><span class="no">'+escapeHtml(match.matchNoCn)+'</span></td>';
+        rows+='<td class="league-cell" style="background-color:'+safeColor(match.leagueColor)+'"><a href="'+base+"/live/zq/league/"+encodeURIComponent(match.leagueId||"")+'" target="_blank" rel="noopener">'+escapeHtml(match.leagueName)+'</a></td>';
+        rows+='<td class="time">'+escapeHtml(match.matchDateStr)+"<br>"+escapeHtml(match.matchTime)+"</td>";
+        rows+='<td><div class="status-wrap"><span class="status">'+escapeHtml(match.statusDes)+'</span>'+(neutral?'<span class="neutral">中立</span>':"")+"</div></td>";
+        rows+='<td class="team"><a href="'+base+"/live/zq/team/"+encodeURIComponent(match.homeId||"")+'" target="_blank" rel="noopener">'+escapeHtml(match.homeName)+"</a><small>排名 "+escapeHtml(match.homeRank||"—")+"</small></td>";
+        rows+='<td class="score">'+scoreText(match,false)+"<small>半场 "+scoreText(match,true)+"</small></td>";
+        rows+='<td class="team"><a href="'+base+"/live/zq/team/"+encodeURIComponent(match.awayId||"")+'" target="_blank" rel="noopener">'+escapeHtml(match.awayName)+"</a><small>排名 "+escapeHtml(match.awayRank||"—")+"</small></td>";
+        rows+='<td class="stats">角球 '+escapeHtml(match.corner||"—")+'<br><span class="cards">黄牌 '+escapeHtml(match.homeYellowCard||0)+"-"+escapeHtml(match.awayYellowCard||0)+" · 红牌 "+escapeHtml(match.homeRedCard||0)+"-"+escapeHtml(match.awayRedCard||0)+"</span></td>";
+        rows+='<td class="experts"><a href="'+base+"/live/zq/matchDetail/plan/"+encodeURIComponent(id)+'" target="_blank" rel="noopener">'+escapeHtml(expertCount(match))+"人</a></td>";
+        rows+='<td class="result">'+resultCell(match)+"</td>";
+        rows+='<td class="odds">'+renderSelectedOdds(match)+"</td>";
+        rows+='<td class="analysis">'+links(match)+"</td>";
+        rows+='<td class="pin-column"><button class="pin-button'+(pinned?" active":"")+'" type="button" data-pin-id="'+escapeHtml(id)+'" title="'+(pinned?"取消置顶":"置顶")+'">↑</button></td></tr>';
+      }
+      tbody.innerHTML=rows||'<tr><td class="empty" colspan="13">该期没有比赛数据</td></tr>';
+      bindPinButtons();
+    }
+    function bindPinButtons(){
+      var buttons=tbody.getElementsByTagName("button"),index;
+      for(index=0;index<buttons.length;index++){if(buttons[index].getAttribute("data-pin-id")){buttons[index].onclick=function(){var id=this.getAttribute("data-pin-id");pinnedMatchId=pinnedMatchId===id?"":id;renderMatchRows()}}}
     }
     function render(issue,data){
-      var matches=data.matchList||[],dateMap={},dates=[],goals=0,rows="",index,match,date;
+      var matches=data.matchList||[],dateMap={},dates=[],goals=0,index,match,date;
       if(data.oddsSelection){currentOddsType=data.oddsSelection.type;providerByType[currentOddsType]=Number(data.oddsSelection.provider)}
+      currentData=data;currentMatches=matches;
       updateOddsTitles();
-      for(index=0;index<matches.length;index++){match=matches[index];dateMap[match.matchDate]=true;goals+=Number(match.homeScore||0)+Number(match.awayScore||0)}
+      for(index=0;index<matches.length;index++){match=matches[index];dateMap[match.matchDate]=true;if(isStarted(match)){goals+=Number(match.homeScore||0)+Number(match.awayScore||0)}}
       for(date in dateMap){if(dateMap.hasOwnProperty(date)){dates.push(date)}}dates.sort();
-      document.getElementById("hero").setAttribute("data-issue",issue);text("title","六场半全 · "+issue+"期");text("subtitle","天天盈球历史数据 · "+dates.join(" 至 "));
+      text("title","6场半全 · "+issue+"期");text("subtitle","天天盈球历史数据 · "+(dates.length?dates[0]+(dates.length>1?" 至 "+dates[dates.length-1]:""):"—"));
       text("matchCount",matches.length);text("dateRange",dates.length>1?dates[0].slice(5)+"—"+dates[dates.length-1].slice(5):(dates.length?dates[0].slice(5):"—"));text("goalCount",goals);text("issueMetric",issue);
       document.getElementById("sourceLink").href=base+"/static/no_cache/league/zc/jsbf/ttyq2020/sfc/sfc6cb_"+issue+".json";text("sourceLink","查看天天盈球原始数据");
-      for(index=0;index<matches.length;index++){match=matches[index];rows+='<tr><td><span class="no">'+match.matchNoCn+'</span></td><td><a class="league" href="'+base+"/live/zq/league/"+match.leagueId+'" target="_blank">'+match.leagueName+'</a></td><td class="time">'+match.matchDateStr+"<br>"+match.matchTime+'</td><td><span class="status">'+match.statusDes+'</span></td><td class="team"><a href="'+base+"/live/zq/team/"+match.homeId+'" target="_blank">'+match.homeName+"</a><small>排名 "+(match.homeRank||"—")+'</small></td><td class="score">'+scoreText(match,false)+"<small>半场 "+scoreText(match,true)+'</small></td><td class="team"><a href="'+base+"/live/zq/team/"+match.awayId+'" target="_blank">'+match.awayName+"</a><small>排名 "+(match.awayRank||"—")+'</small></td><td class="stats">角球 '+(match.corner||"—")+'<br><span class="cards">黄牌 '+(match.homeYellowCard||0)+"-"+(match.awayYellowCard||0)+" · 红牌 "+(match.homeRedCard||0)+"-"+(match.awayRedCard||0)+'</span></td><td class="odds">'+renderSelectedOdds(match)+'</td><td class="analysis">'+links(match)+"</td></tr>"}
-      tbody.innerHTML=rows||'<tr><td class="empty" colspan="10">该期没有比赛数据</td></tr>';renderOddsSummary(matches);currentMatches=matches;return matches;
+      renderMatchRows();renderOddsSummary(matches);return matches;
     }
     function getJson(url,done){var request=new XMLHttpRequest(),joiner=url.indexOf("?")>=0?"&":"?";request.open("GET",url+joiner+"_="+new Date().getTime(),true);request.onreadystatechange=function(){if(request.readyState!==4){return}var data={};try{data=JSON.parse(request.responseText)}catch(ignore){}done(request.status>=200&&request.status<300,data)};request.onerror=function(){done(false,{})};request.send()}
+    function issueIndex(issue){var index;for(index=0;index<issueList.length;index++){if(issueList[index]===issue){return index}}return -1}
+    function adjacentIssue(direction){
+      var index=issueIndex(currentIssue),position,year,sequence;
+      if(index>=0){position=index+(direction==="previous"?1:-1);return position>=0&&position<issueList.length?issueList[position]:null}
+      if(!currentIssue||!/^\d{7}$/.test(currentIssue)){return null}
+      year=currentIssue.slice(0,4);sequence=Number(currentIssue.slice(4))+(direction==="previous"?-1:1);
+      return sequence>0?year+("000"+sequence).slice(-3):null;
+    }
+    function updateNavigation(){
+      previousButton.disabled=loading||!adjacentIssue("previous");
+      nextButton.disabled=loading||!adjacentIssue("next");
+    }
+    function syncIssueControls(issue){
+      var index=issueIndex(issue);
+      input.value=issue;
+      if(index>=0){select.value=issue}
+      updateNavigation();
+    }
+    function setLoading(active){
+      loading=active;button.disabled=active;modeButton.disabled=active;select.disabled=active;input.disabled=active;
+      button.textContent=active?"读取中…":"加载历史数据";updateNavigation();
+    }
     function loadIssue(issue,includeDraw){
       var url="/api/issue?issue="+encodeURIComponent(issue)+"&type="+encodeURIComponent(currentOddsType)+"&provider="+encodeURIComponent(providerByType[currentOddsType]);
-      button.disabled=true;button.textContent="读取中…";showNotice("正在读取 "+issue+"期 "+providerNames[providerByType[currentOddsType]]+"…",false);
-      if(includeDraw){document.getElementById("drawStrip").className="draw-strip";document.getElementById("drawDetail").className="draw-detail"}
+      setLoading(true);showNotice("正在读取 "+issue+"期 "+providerNames[providerByType[currentOddsType]]+"…",false);
       getJson(url,function(ok,data){
-        if(!ok){tbody.innerHTML='<tr><td class="empty" colspan="10">没有可显示的数据</td></tr>';document.getElementById("averageOdds").className="average-odds";showNotice(data.error||"查询失败",true);button.disabled=false;button.textContent="查询历史";return}
-        var matches=render(issue,data);currentIssue=issue;showNotice("已载入 "+issue+"期，共 "+matches.length+" 场比赛。",false);if(window.history&&history.replaceState){history.replaceState(null,"","?issue="+issue)}
-        if(includeDraw){getJson("/api/draw?issue="+encodeURIComponent(issue),function(drawOk,draw){renderDraw(drawOk?draw:{},matches);button.disabled=false;button.textContent="查询历史"})}else{button.disabled=false;button.textContent="查询历史"}
+        if(!ok){showNotice(data.error||"查询失败，当前页面数据已保留。",true);setLoading(false);return}
+        if(currentIssue!==issue){pinnedMatchId=""}
+        currentIssue=issue;syncIssueControls(issue);
+        var matches=render(issue,data);
+        showNotice("已载入 "+issue+"期，共 "+matches.length+" 场比赛。",false);
+        if(window.history&&history.replaceState){history.replaceState(null,"","?issue="+issue)}
+        if(includeDraw){getJson("/api/draw?issue="+encodeURIComponent(issue),function(drawOk,draw){renderDraw(drawOk?draw:{},matches);setLoading(false)})}else{setLoading(false)}
       });
     }
     function renderOddsMenu(type){
-      var tabs="",providers="",providerList=type==="oz"?[7,0,1,2,3,4,5]:[0,1,2,3,4,5],index,tabButton,providerButton;
+      var tabs="",providers="",providerList=type==="oz"?[7,0,1,2,3,4,5]:[0,1,2,3,4,5],index,tabButtons,providerButtons;
       menuOddsType=type;
       for(index=0;index<oddsTypes.length;index++){tabs+='<button class="odds-tab'+(oddsTypes[index].value===type?" active":"")+'" type="button" data-type="'+oddsTypes[index].value+'">'+oddsTypes[index].label+"</button>"}
       for(index=0;index<providerList.length;index++){providers+='<button class="odds-provider'+(currentOddsType===type&&providerByType[type]===providerList[index]?" active":"")+'" type="button" data-provider="'+providerList[index]+'">'+providerNames[providerList[index]]+"</button>"}
       document.getElementById("oddsTabs").innerHTML=tabs;document.getElementById("oddsProviderList").innerHTML=providers;
-      tabButton=document.getElementById("oddsTabs").getElementsByTagName("button");for(index=0;index<tabButton.length;index++){tabButton[index].onclick=function(){renderOddsMenu(this.getAttribute("data-type"))}}
-      providerButton=document.getElementById("oddsProviderList").getElementsByTagName("button");for(index=0;index<providerButton.length;index++){providerButton[index].onclick=function(){currentOddsType=menuOddsType;providerByType[currentOddsType]=Number(this.getAttribute("data-provider"));updateOddsTitles();document.getElementById("oddsMenu").className="odds-menu";if(currentIssue){loadIssue(currentIssue,false)}}}
+      tabButtons=document.getElementById("oddsTabs").getElementsByTagName("button");for(index=0;index<tabButtons.length;index++){tabButtons[index].onclick=function(){renderOddsMenu(this.getAttribute("data-type"))}}
+      providerButtons=document.getElementById("oddsProviderList").getElementsByTagName("button");for(index=0;index<providerButtons.length;index++){providerButtons[index].onclick=function(){currentOddsType=menuOddsType;providerByType[currentOddsType]=Number(this.getAttribute("data-provider"));updateOddsTitles();document.getElementById("oddsMenu").className="odds-menu";if(currentIssue){loadIssue(currentIssue,false)}}}
     }
-    form.addEventListener("submit",function(event){event.preventDefault();var issue=normalize(manualMode?input.value:select.value);if(!issue){showNotice(manualMode?"请输入 5 位简写或 7 位完整数字期号，例如 26128。":"请先从下拉框选择期号。",true);return}loadIssue(issue,true)});
+    form.addEventListener("submit",function(event){event.preventDefault();var issue=normalize(manualMode?input.value:select.value);if(!issue){showNotice(manualMode?"请输入 5 位简写或 7 位完整数字期号，例如 26135。":"请先从下拉框选择期号。",true);return}loadIssue(issue,true)});
+    select.addEventListener("change",function(){var issue=normalize(select.value);if(!manualMode&&!loading&&issue&&issue!==currentIssue){loadIssue(issue,true)}});
+    previousButton.addEventListener("click",function(){var issue=adjacentIssue("previous");if(issue){loadIssue(issue,true)}});
+    nextButton.addEventListener("click",function(){var issue=adjacentIssue("next");if(issue){loadIssue(issue,true)}});
     function toggle(id,className,showText,hideText){document.getElementById(id).addEventListener("click",function(event){var pattern=new RegExp("(^|\\s)"+className+"(\\s|$)"),active=pattern.test(document.body.className);document.body.className=active?document.body.className.replace(pattern," "):document.body.className+" "+className;event.currentTarget.textContent=active?hideText:showText;event.currentTarget.className=active?"":"active"})}
     toggle("cardsButton","cards-off","显示牌数","隐藏牌数");toggle("oddsButton","odds-off","显示赔率","隐藏赔率");
-    modeButton.addEventListener("click",function(){manualMode=!manualMode;select.className=manualMode?"hidden":"";input.className=manualMode?"":"hidden";this.textContent=manualMode?"下拉选择":"手动输入";if(manualMode){input.focus()}});
-    document.getElementById("drawDetailButton").addEventListener("click",function(){var detail=document.getElementById("drawDetail"),shown=detail.className.indexOf("show")>=0;detail.className=shown?"draw-detail":"draw-detail show";this.textContent=shown?"开奖详情 ›":"收起详情 ↑"});
+    modeButton.addEventListener("click",function(){manualMode=!manualMode;select.className=manualMode?"hidden":"";input.className=manualMode?"":"hidden";this.textContent=manualMode?"下拉选择":"手动输入";if(manualMode){input.value=currentIssue||input.value;input.focus()}});
     document.getElementById("oddsSwitchButton").addEventListener("click",function(event){var menu=document.getElementById("oddsMenu"),shown=menu.className.indexOf("show")>=0;if(!shown){renderOddsMenu(currentOddsType)}menu.className=shown?"odds-menu":"odds-menu show";event.stopPropagation()});
     document.getElementById("oddsMenu").addEventListener("click",function(event){event.stopPropagation()});
     document.addEventListener("click",function(){document.getElementById("oddsMenu").className="odds-menu"});
     function submitForm(){if(document.createEvent){var submitEvent=document.createEvent("Event");submitEvent.initEvent("submit",true,true);form.dispatchEvent(submitEvent)}}
-    var match=location.search.match(/[?&]issue=([^&]+)/),initial=match?decodeURIComponent(match[1]):"";
-    updateOddsTitles();
-    getJson("/api/issues",function(ok,data){var issues=ok&&data.issues?data.issues:[],html="",index,selected="",found=false;for(index=0;index<issues.length;index++){selected=initial&&(issues[index].slice(-5)===initial.slice(-5))?' selected="selected"':"";html+='<option value="'+issues[index]+'"'+selected+">"+issues[index]+"期</option>"}select.innerHTML=html||'<option value="">暂无下拉期号，请手动输入</option>';if(initial){for(index=0;index<issues.length;index++){if(issues[index].slice(-5)===initial.slice(-5)){found=true;break}}if(found){submitForm()}else{manualMode=true;select.className="hidden";input.className="";modeButton.textContent="下拉选择";input.value=initial;submitForm()}}});
+    var queryMatch=location.search.match(/[?&]issue=([^&]+)/),initial=queryMatch?normalize(decodeURIComponent(queryMatch[1])):"";
+    updateOddsTitles();updateNavigation();
+    getJson("/api/issues",function(ok,data){
+      var issues=ok&&data.issues?data.issues:[],html="",index,selected="",found=false;
+      issueList=issues;
+      for(index=0;index<issues.length;index++){selected=initial&&issues[index]===initial?' selected="selected"':"";html+='<option value="'+issues[index]+'"'+selected+">"+issues[index]+"期</option>"}
+      select.innerHTML=html||'<option value="">暂无下拉期号，请手动输入</option>';
+      if(initial){
+        found=issueIndex(initial)>=0;
+        if(found){select.value=initial;submitForm()}else{manualMode=true;select.className="hidden";input.className="";modeButton.textContent="下拉选择";input.value=initial;submitForm()}
+      }else if(issues.length){select.value=issues[0];submitForm()}else{manualMode=true;select.className="hidden";input.className="";modeButton.textContent="下拉选择";updateNavigation()}
+    });
   </script>
 </body>
 </html>
